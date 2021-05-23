@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import CatList from './CatList';
 import CatDetails from './CatDetails';
+import Navbar from './Navbar';
 
 class App extends Component {
 	static defaultProps = {
@@ -39,10 +40,13 @@ class App extends Component {
 			return <CatDetails {...props} cat={currentCat} />;
 		};
 		return (
-			<Switch>
-				<Route exact path="/cats/:name" render={getCat} />;
-				<Route exact path="/cats" render={() => <CatList cats={this.props.cats} />} />;
-			</Switch>
+			<div>
+				<Navbar cats={this.props.cats} />
+				<Switch>
+					<Route exact path="/cats/:name" render={getCat} />;
+					<Route exact path="/cats" render={() => <CatList cats={this.props.cats} />} />;
+				</Switch>
+			</div>
 		);
 	}
 }
