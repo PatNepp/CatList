@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
-import CatList from './CatList';
-import CatDetails from './CatDetails';
+
 import Navbar from './Navbar';
+import Routes from './Routes';
 
 class App extends Component {
 	static defaultProps = {
@@ -34,18 +33,12 @@ class App extends Component {
 		]
 	};
 	render() {
-		const getCat = (props) => {
-			let name = props.match.params.name;
-			let currentCat = this.props.cats.find((cat) => cat.name.toLowerCase() === name.toLowerCase());
-			return <CatDetails {...props} cat={currentCat} />;
-		};
 		return (
 			<div>
 				<Navbar cats={this.props.cats} />
-				<Switch>
-					<Route exact path="/cats/:name" render={getCat} />;
-					<Route exact path="/cats" render={() => <CatList cats={this.props.cats} />} />;
-				</Switch>
+				<div className="container">
+					<Routes cats={this.props.cats} />
+				</div>
 			</div>
 		);
 	}
